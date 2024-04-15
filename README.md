@@ -2,11 +2,9 @@
 
 - Custom printing page created for a client project. This page give the customer an option to choose the t-shirt size and color 
 as well as logo color choices.
-
-After the selection customer can choose to add this product to the cart.
-
-At the cart and checkout customer can see the full description for the custom print product added.
-
+- After the selection customer can choose to add this product to the cart.
+- At the cart and checkout customer can see the full description for the custom print product added.
+- please visit the eastvanstore page at [Eastvanstore Custom Printing](https://www.eastvanstore.com/product/custom-print/)
 
 
 
@@ -14,6 +12,18 @@ At the cart and checkout customer can see the full description for the custom pr
 
 - custom build printing page will work wil most WP and WooCommerce installations
 - it was created as a product page and works by selecting specific product ID.
+- insert all files inside of the custom built WordPress theme
+- WooCoomerce plugin needs to be installed and choose custom product page created. Grab its ID.
+- inside of your theme create a woocommerce directory
+    - then copy/paste the file from `wp-content\plugins\woocommerce\templates\content-single-product.php` into `your-theme/woocommerce/` with the same file name
+    - for easier use I have defined a constant for the specific product page ID and inside of the `content-single-product.php` if this ID is used include your custom code
+    - in this case include `your-theme/partials/custom-print/top-content-guide.php`
+    - then this one `your-theme/partials/custom-print/product-images.php`
+    - and this one `your-theme/partials/custom-print/product-summary.php`
+    - in addition to this there ACF fields declared in the ACF options page so that the client can select and choose which colors and logo options.
+    - to handle the changes, dropdown values with each selection a custom Javascript is created.
+    - inside of `your-theme/js/customPrinting.js`
+    - this file is only enqueue if the product page ID is used for custom printing
 
 
 ### Tested with versions
