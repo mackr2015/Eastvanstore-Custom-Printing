@@ -25,7 +25,7 @@ $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_j
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-<?php // Proceed if not Custom T-shirt Print produt
+<?php // Include shirt options if is Custom T-shirt Print product
 if( $product->get_id() == CUSTOM_PRINT_PRODUCT_ID ): ?>
 	
 	<?php include_once __DIR__ . '/../../../partials/custom-print/shirt-options.php'; ?>

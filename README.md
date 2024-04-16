@@ -8,27 +8,45 @@ as well as logo color choices.
 
 
 
-## Getting Started
+## Workflow guide
 
 - custom build printing page will work wil most WP and WooCommerce installations
 - it was created as a product page and works by selecting specific product ID.
 - insert all files inside of the custom built WordPress theme
 - WooCoomerce plugin needs to be installed and choose custom product page created. Grab its ID.
 - inside of your theme create a woocommerce directory
-    - then copy/paste the file from `wp-content/plugins/woocommerce/templates/content-single-product.php` into `your-theme/woocommerce/` with the same file name
-    - for easier use I have defined a constant for the specific product page ID and inside of the `content-single-product.php` if this ID is used include your custom code
-    - in this case include `your-theme/partials/custom-print/top-content-guide.php`
-    - then this one `your-theme/partials/custom-print/product-images.php`
-    - this one `your-theme/partials/custom-print/product-summary.php`
-    - this one `your-theme/partials/custom-print/shirt-options.php`
-    - and this one `your-theme/woocommerce/single-product/add-to-cart/variable.php`
-    - in addition to this there are ACF fields declared in the ACF options page so that client can select and choose which colors and logo options.
-    - to handle the changes, dropdown values with each selection a custom JavaScript is created.
+    - then copy/paste the file from `wp-content/plugins/woocommerce/templates/content-single-product.php` into `your-theme/woocommerce/`
+    - this file has been changed with the below code line, which you can find in the root of this project
+    ```
+    <?php if( $product->get_id() == CUSTOM_PRINT_PRODUCT_ID ): ?>
+	    <?php include_once __DIR__ . '/../partials/custom-print/top-content-guide.php'; ?>
+    <?php endif; ?>
+    ```
+    - for the easier use I have defined a constant `CUSTOM_PRINT_PRODUCT_ID` inside of wordpress root `wp-config.php` and it depends on the env so that it works for local, stage and prod
+
+
+    - other files that are in this projects are as follows:
+    - top part of the page content `your-theme/partials/custom-print/top-content-guide.php`
+    - content images `your-theme/partials/custom-print/product-images.php`
+    - product summary `your-theme/partials/custom-print/product-summary.php`
+    - printing options `your-theme/partials/custom-print/shirt-options.php`
+    - woocommerce add to cart variable with the includes code. path to `your-theme/woocommerce/single-product/add-to-cart/variable.php`
+    ```
+    <?php // After the action hook do_action( 'woocommerce_before_add_to_cart_form' );
+    <?php // Include shirt options if is Custom T-shirt Print product
+    if( $product->get_id() == CUSTOM_PRINT_PRODUCT_ID ): ?>
+	
+	<?php include_once __DIR__ . '/../../../partials/custom-print/shirt-options.php'; ?>
+	
+    <?php endif; ?>
+    ```
+
+    - in addition to this there are ACF fields declared in the ACF options page so that client can select and choose which colors and logo options to choose from
+    - to handle the changes, dropdown values with each selection a custom JavaScript (with jQuery block for ease of use) is created.
     - inside of `your-theme/js/customPrinting.js`
-    - this file is only enqueue if the product page ID is used for custom printing
-    - inside of WooCommerce cart we need to check for the custom printing product and if it has been added
-    - copy/paste the file from `wp-content/plugins/woocommerce/cart/cart.php` to `your-theme/woocommerce/cart/cart.php`
-    - check for the `woocommerce/cart/cart.php` from this repo and you will see that there are references to the custom created constant `CUSTOM_PRINT_PRODUCT_ID`
+    - this file is only enqueued if the product page ID is used for custom printing
+   
+
 
 
 
@@ -44,7 +62,6 @@ as well as logo color choices.
 * [WordPress](https://www.wordpress.org) - The web framework used
 * [WooCommerce](https://woocommerce.com/) - WP plugin
 * [Custom build JavaScript and PHP](https://mackraicevic.com) - by Mack Raicevic
-
 
 
 
