@@ -7,8 +7,13 @@ as well as logo color choices.
 - please visit the eastvanstore page at [Eastvanstore Custom Printing](https://www.eastvanstore.com/product/custom-print/)
 
 
+## Built With
 
-## Workflow guide
+* [WordPress](https://www.wordpress.org) - The web framework used
+* [WooCommerce](https://woocommerce.com/) - WP plugin
+* [Custom build JavaScript and PHP](https://mackraicevic.com) - by Mack Raicevic
+
+### Workflow guide
 
 - custom build printing page will work with most WP and WooCommerce installations
 - it was created as a product page and works by selecting specific product ID.
@@ -27,26 +32,26 @@ as well as logo color choices.
     - for the easier use I have defined a constant `CUSTOM_PRINT_PRODUCT_ID` inside of wordpress root `wp-config.php` and it depends on the env so that it works for local, stage and prod
 
 
-    - other files that are in this projects are as follows:
-        - top part of the page content `your-theme/partials/custom-print/top-content-guide.php`
-        - content images `your-theme/partials/custom-print/product-images.php`
-        - product summary `your-theme/partials/custom-print/product-summary.php`
-        - printing options `your-theme/partials/custom-print/shirt-options.php`
-        - woocommerce add to cart variable with the includes code. path to `your-theme/woocommerce/single-product/add-to-cart/variable.php`
-        ```
-        <?php // After the action hook do_action( 'woocommerce_before_add_to_cart_form' );
-        <?php // Include shirt options if is Custom T-shirt Print product
-        if( $product->get_id() == CUSTOM_PRINT_PRODUCT_ID ): ?>
-        
-        <?php include_once __DIR__ . '/../../../partials/custom-print/shirt-options.php'; ?>
-        
-        <?php endif; ?>
-        ```
+- other files that are in this projects are as follows:
+    - top part of the page content `your-theme/partials/custom-print/top-content-guide.php`
+    - content images `your-theme/partials/custom-print/product-images.php`
+    - product summary `your-theme/partials/custom-print/product-summary.php`
+    - printing options `your-theme/partials/custom-print/shirt-options.php`
+    - woocommerce add to cart variable with the includes code. path to `your-theme/woocommerce/single-product/add-to-cart/variable.php`
+    ```
+    <?php // After the action hook do_action( 'woocommerce_before_add_to_cart_form' );
+    <?php // Include shirt options if is Custom T-shirt Print product
+    if( $product->get_id() == CUSTOM_PRINT_PRODUCT_ID ): ?>
+    
+    <?php include_once __DIR__ . '/../../../partials/custom-print/shirt-options.php'; ?>
+    
+    <?php endif; ?>
+    ```
 
-        - in addition to this there are ACF fields declared in the ACF options page so that client can select and choose which colors and logo options to choose from
-        - to handle the changes, dropdown values with each selection a custom JavaScript (with jQuery block for ease of use) is created.
-        - inside of `your-theme/js/customPrinting.js`
-        - this file is only enqueued if the product page ID is used for custom printing
+    - in addition to this there are ACF fields declared in the ACF options page so that client can select and choose which colors and logo options to choose from
+    - to handle the changes, dropdown values with each selection a custom JavaScript (with jQuery block for ease of use) is created.
+    - inside of `your-theme/js/customPrinting.js`
+    - this file is only enqueued if the product page ID is used for custom printing
    
 
 
@@ -57,13 +62,6 @@ as well as logo color choices.
 - WooCommerce 8.3.1
 
 
-## Built With
-
-* [WordPress](https://www.wordpress.org) - The web framework used
-* [WooCommerce](https://woocommerce.com/) - WP plugin
-* [Custom build JavaScript and PHP](https://mackraicevic.com) - by Mack Raicevic
-
-
 
 ## Author
 
@@ -72,6 +70,6 @@ as well as logo color choices.
 
 ## License
 
-This project is licensed for client use and not to be copied elsewhere
+This project is licensed for the client use and not to be copied elsewhere
 
 
