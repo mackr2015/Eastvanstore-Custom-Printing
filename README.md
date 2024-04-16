@@ -1,4 +1,4 @@
-# Eastvanstore Custom Print Page
+# Eastvanstore WP Custom Print Page
 
 - Custom printing page created for a client project. This page give the customer an option to choose the t-shirt size and color 
 as well as logo color choices.
